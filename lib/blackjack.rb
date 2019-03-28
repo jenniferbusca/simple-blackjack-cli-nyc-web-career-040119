@@ -37,7 +37,7 @@ def hit?(current_total)
   answer = get_user_input
     if answer == 'h' 
       new_card_total += deal_card
-    else answer != 's' || answer != 'h'
+    else answer != 's' && answer != 'h'
       invalid_command
     end
   return new_card_total
@@ -56,7 +56,9 @@ def runner
   number = display_card_total(initial_round)
   result = hit?(number)
     until result > 21
-      result = hit?(number)
+      display_card_total(result)
+      result = hit?(result)
+      
     end
   end_game(result)
 end
